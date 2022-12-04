@@ -46,7 +46,6 @@ def main():
         soup = BeautifulSoup(driver.page_source, 'html5lib')
         time.sleep(0.5)
 
-        title = i[1]
         try:
             number_of_members = soup.find(class_='tgme_page_extra').get_text(strip=True)
             number_of_members = number_of_members.partition('m')[0].strip()
@@ -65,7 +64,7 @@ def main():
 
         dict_ = {
             'position': position,
-            'title': title,
+            'title': i[1],
             'url': i[0],
             'number of members': number_of_members,
             'description': description
