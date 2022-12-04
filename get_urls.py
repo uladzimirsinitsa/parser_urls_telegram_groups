@@ -17,15 +17,15 @@ PATH_DRIVER = os.environ['PATH_DRIVER']
 URL = os.environ['URL_START']
 
 
-def get_urls(soup: BeautifulSoup):
+def get_urls(soup: BeautifulSoup) -> list:
     return [j.find('a').get('href') for j in soup.find(id='chats').find_all(class_='link')]
 
 
-def get_titles(soup: BeautifulSoup):
+def get_titles(soup: BeautifulSoup) -> list:
     return [i.get_text(strip=True) for i in soup.find(id='chats').find_all(class_='card-title')]
 
 
-def save_csv(urls, titles):
+def save_csv(urls: list, titles: list) -> None:
     data = []
     for i, _ in enumerate(urls):
         data.append([urls[i], titles[i]])

@@ -17,16 +17,13 @@ PATH_DRIVER = os.environ['PATH_DRIVER']
 URL = os.environ['URL_START']
 
 
-def get_urls():
+def get_urls() -> list:
     with open('groups_urls.csv', 'r', newline='\n', encoding='utf-8') as csvfile:
         reader_csv = csv.reader(csvfile)
-        data = []
-        for row in reader_csv:
-            data.append([row[0].strip(), row[1].strip()])
-    return data
+        return [[row[0].strip(), row[1].strip()] for row in reader_csv]
 
 
-def save_csv(dict_):
+def save_csv(dict_: dict) -> None:
     with open('raiting_of_groups.csv', 'a', newline='', encoding='utf-8') as csvfile:
         columns = ['position', 'title', 'url', 'number of members', 'description']
         writer = csv.DictWriter(csvfile, fieldnames=columns, quoting=csv.QUOTE_ALL)
